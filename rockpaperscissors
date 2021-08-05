@@ -1,0 +1,64 @@
+const getUserChoice = userInput => {
+  userInput = userInput.toLowerCase();
+  if (userInput === 'rock' || userInput === 'paper' || userInput === 'scissors' || userInput === 'bomb') {
+       return userInput;
+   } else {
+     console.log('Error, invaild entry.');
+  }
+}
+
+const getComputerChoice = () => {
+  const randomNumber = Math.floor(Math.random() * 3);
+  switch (randomNumber) {
+    case 0:
+      return 'rock';
+    case 1:
+      return 'paper';
+    case 2:
+      return 'scissors';
+  }
+}
+
+const determineWinner = (userChoice, computerChoice) => {
+  if (userChoice === computerChoice) {
+    return 'This game is a tie!';
+  }
+  if (userChoice === 'rock') {
+    if (computerChoice === 'paper') {
+      return 'Sorry, paper defeats rock and the computer won!';
+    } else {
+      return 'Congratulations, rock defeats scissors and you won!'
+    }
+  }
+
+  if (userChoice === 'paper') {
+    if (computerChoice === 'scissors') {
+      return 'Sorry, scissors defeats paper and the computer won!';
+    } else {
+      return 'Congratulations, paper defeats rock and you won!'
+    }
+  }
+
+  if (userChoice === 'scissors') {
+    if (computerChoice === 'rock') {
+      return 'Sorry, rock beats scissors and the computer won!';
+    } else {
+      return 'Congratulations, scissors defeats paper and you won!'
+    }
+  }
+
+  if (userChoice === 'bomb') {
+    return 'Congratulations, you found the secret code and won!'
+  }
+}; 
+
+const playGame = () => {
+  const userChoice = getUserChoice('bomb');
+  const computerChoice = getComputerChoice();
+  console.log(`You chose ${userChoice}.`);
+  console.log(`The computer chose ${computerChoice}.`);
+
+  console.log(determineWinner(userChoice, computerChoice));
+};
+
+playGame()
